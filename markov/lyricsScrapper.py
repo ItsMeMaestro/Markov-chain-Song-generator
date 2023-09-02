@@ -2,7 +2,7 @@ import os
 from lyricsgenius import Genius
 
 # Set up your Genius API client
-genius = Genius("dwIKoahuN59ekHYgQOCWpGdAX69IwFay1nLXaRqLfmwFiabekGW4Yk7be_PDwnEV", timeout=10)
+genius = Genius("Enter API token here", timeout=10)
 
 def scrap_lyrics(input_artist, max_songs):
     # Search for the artist
