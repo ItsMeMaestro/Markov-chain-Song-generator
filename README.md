@@ -27,5 +27,23 @@ To get started with this project, follow these steps:
 3. Run the console application(main.py file).
 4. Explore the options for generating text using Markov chains.
 
+# Specification
+## **lyricsScrapper.py**
+  
+
+### Overview
+This Python script scrapes the lyrics of an artist's songs using the Genius API and saves them to a text file. The artist's name is used to name the output file (case sensitive), and song download priority is based on popularity.
+
+### Dependencies
+- `os`: Used for file system operations.
+- `lyricsgenius`: Used for interacting with the Genius API.
+
+### Usage
+1. Set up your Genius API client by providing your API key.
+2. Specify the artist's name and the maximum number of songs to download.
+3. Run the script.
+
+
+
 
 
