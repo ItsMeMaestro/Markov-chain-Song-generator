@@ -3,7 +3,12 @@ from lyricsCleaner import clean_lyrics
 import chainBuilder
 import SentenceGenerator
 import os
-# Function to read settings from a file
+"""
+This program generates random sentences based on the lyrics of a given artist.
+"""
+"""
+The function below reads settings from a file and returns them as a dictionary.
+"""
 def read_settings(filename):
     settings = {}
     try:
@@ -15,7 +20,9 @@ def read_settings(filename):
         pass  # Handle the case when the settings file doesn't exist
     return settings
 
-# Function to save settings to a file
+"""
+The function below saves settings to a file.
+"""
 def save_settings(filename, settings):
     with open(filename, 'w') as file:
         for key, value in settings.items():
@@ -26,6 +33,9 @@ def display_settings(settings):
     print("Current Settings:")
     for key, value in settings.items():
         print(f"{key}: {value}")
+"""
+Gets artist name(as written in the file name) and returns a list of possible song numbers
+"""
 def find_possible_song_numbers(artist_name):
     folder_path = "cleanedLyrics"
     artist_name = artist_name.replace(" ", "_")
@@ -81,13 +91,14 @@ while True:
     choice = input("Enter your choice: ")
 
     if choice == "1":
+        # Display the current settings and options
         print("Options:")
         print("a. Change n-gram length")
         print("b. Change words in a sentence")
         print("c. Change number of sentences")
         print("d. Go back to the main menu")
         sub_choice = input("Enter your choice: ")
-
+        # Change the settings based on the user's choice
         if sub_choice == "a":
             print("Enter new n-gram length:")
             k = int(input())
@@ -106,6 +117,7 @@ while True:
         elif sub_choice == "d":
             continue
     elif choice == "2":
+        #Proceed with the program
         print("Enter artist name:")
         artist = input()
         possible_song_numbers = find_possible_song_numbers(artist)
@@ -129,6 +141,7 @@ while True:
         SentenceGenerator.generate_sentences(sentences, words, k, word_dict, last_words)
         break
     elif choice == "3":
+        #Add new artist and download lyrics
         print("Enter artist name:")
         artist = input()
         print("Enter number of songs:")
@@ -138,4 +151,5 @@ while True:
         break
     elif choice == "4":
         break
+
 
