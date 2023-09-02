@@ -1,5 +1,11 @@
 import pronouncing
 import numpy as np
+"""
+Uses pronouncing library to get array of phonemes.
+Since CMU dictionary is limited, some words wont have phonemes by default.
+In that case, the first letter is removed and the function is called recursively.
+
+"""
 def check_rhyme(word1, word2):
     phonetics1 = pronouncing.phones_for_word(word1)
     phonetics2 = pronouncing.phones_for_word(word2)
@@ -35,8 +41,9 @@ def check_rhyme(word1, word2):
                 return True
 
     return False
-#Choose word based on the previous n words.
-#If there is no word that can be chosen, the function is called recursively with n-1
+"""
+Choose word based on the previous n words.
+If there is no word that can be chosen, the function is called recursively with n-1"""
 def choose_word(word_dict, key, sentence, j, n):
     if n == 0:
         return
@@ -53,7 +60,9 @@ def choose_word(word_dict, key, sentence, j, n):
                 sentence.append(prev_word)
     else:
         return
-#Generates sentences
+"""
+Generates sentences based on the corpus and the word dictionary.
+"""
 def generate_sentences(sentences, words, n, word_dict, last_words):
     wordToRhyme=""
     for i in range(sentences):
