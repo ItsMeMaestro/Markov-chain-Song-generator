@@ -1,0 +1,3 @@
+ngram_length: 2
+words_in_sentence: 8
+num_sentences: 40
