@@ -24,7 +24,7 @@ To get started with this project, follow these steps:
 
 1. Clone the repository to your local machine.
 2. Install the required dependencies.
-3. Run the console application.
+3. Run the console application(main.py file).
 4. Explore the options for generating text using Markov chains.
 
 
