@@ -3,7 +3,10 @@ from lyricsgenius import Genius
 
 # Set up your Genius API client
 genius = Genius("Enter API token here", timeout=10)
-
+"""
+Scrapes the lyrics of the artist's songs and saves them to a file.
+Artist name will be used to name the output file.(case sensitive)
+Song download priority is based on popularity."""
 def scrap_lyrics(input_artist, max_songs):
     # Search for the artist
     artist = genius.search_artist(input_artist, max_songs=max_songs, sort="popularity")
