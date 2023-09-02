@@ -4,11 +4,11 @@ This is my university semester project for creating a Markov chain lyrics genera
 
 ## Features
 
-- **Lyrics-Based Text Generation**: Generate text using Markov chains from the lyrics of any author. Includes lyrics from popular rappers like Eminem, Yelawolf, and Logic.
+- **Markov-Chain-Based lyrics Generation**: Generate text using Markov chains from the lyrics of any author. Includes lyrics from popular rappers like Eminem, Yelawolf, and Logic.
 
-- **Customizable N-grams**: Configure the length of n-grams for text generation. If a new word cannot be generated for the current n-gram, the generator intelligently removes the last word to improve results.
+- **Customizable N-grams**: Configure the length of n-grams. If a new word cannot be generated for the current n-gram, the generator removes the last word to improve results. N-grams longer than 3 not recommended, especially for smaller song databases(less than 100 tracks).
 
-- **Line Length Control**: Customize the length of generated lines to fit your preferred style or context.
+- **Line Length Control**: Customize the length of generated lines.
 
 - **Line Quantity Adjustment**: Specify the number of lines you want to generate text for various applications or projects.
 
