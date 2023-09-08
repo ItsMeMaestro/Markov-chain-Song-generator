@@ -1,5 +1,7 @@
 import pronouncing
 import numpy as np
+import chainBuilder
+import argparse
 """
 Uses pronouncing library to get array of phonemes.
 Since CMU dictionary is limited, some words wont have phonemes by default.
@@ -91,8 +93,19 @@ def generate_sentences(sentences, words, n, word_dict, last_words):
 
 #Example usage:
 def main():
-    wordToRhyme = "love"
-    print(check_rhyme("above", wordToRhyme))
+    parser = argparse.ArgumentParser(description='Generate sentences based on a corpus of lyrics.')
+    parser.add_argument('sentences', type=int, help='Number of sentences to generate')
+    parser.add_argument('words', type=int, help='Number of words in a sentence')
+    parser.add_argument('n', type=int, help='Length of n-grams')
+    parser.add_argument('artist', help='Name of the artist', default="TheBeatles")
+    parser.add_argument('num', type=int, help='Lyrics number', default=100)
+    args = parser.parse_args()
+
+
+    corpus = chainBuilder.load_cleaned_lyrics(args.artist, args.num)
+    word_dict, last_words = chainBuilder.create_word_dict(args.n, corpus)
+    
+    generate_sentences(args.sentences, args.words, args.n, word_dict, last_words)
 
 if __name__ == "__main__":
     main()
