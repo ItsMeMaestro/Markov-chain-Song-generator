@@ -91,7 +91,11 @@ if 'num_sentences' not in settings:
     num_sentences = int(input())
     settings['num_sentences'] = str(num_sentences)
     save_settings(settings_filename, settings)
-
+if 'token' not in settings:
+    print("Enter Genius token:")
+    token = input()
+    settings['token'] = str(token)
+    save_settings(settings_filename, settings)
 while True:
     # Display the current settings and options
     display_settings(settings)
@@ -99,7 +103,8 @@ while True:
     print("1. Change settings")
     print("2. Continue with the program")
     print("3. Add new artist")
-    print("4. Exit")
+    print("4. Change Genius token")
+    print("5. Exit")
     choice = input("Enter your choice: ")
 
     if choice == "1":
@@ -155,12 +160,10 @@ while True:
         k = int(settings['ngram_length'])
         sentences = int(settings['num_sentences'])
         words = int(settings['words_in_sentence'])
+
         corpus = chainBuilder.load_cleaned_lyrics(artist, songs)
-        last_words = []
-        for i in range(len(corpus)):
-            if corpus[i] and corpus[i][-1] == '.':
-                last_words.append(corpus[i])
-        word_dict = chainBuilder.create_word_dict(k, corpus)
+        
+        word_dict, last_words = chainBuilder.create_word_dict(k, corpus)
         SentenceGenerator.generate_sentences(sentences, words, k, word_dict, last_words)
         break
     elif choice == "3":
@@ -169,9 +172,17 @@ while True:
         artist = input()
         print("Enter number of songs:")
         max_songs = int(input())
-        scrap_lyrics(artist, max_songs)
-        clean_lyrics(artist, max_songs)
+        scrap_lyrics(artist, max_songs, settings['token'])
+        clean_lyrics(artist, max_songs, "lyrics", "cleanedLyrics")
         break
     elif choice == "4":
+        #Change Genius token
+        print("Enter new Genius token:")
+        token = input()
+        settings['token'] = str(token)
+        save_settings(settings_filename, settings)
+        break
+    elif choice == "5":
+        #Exit
         break
 
