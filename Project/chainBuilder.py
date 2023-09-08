@@ -1,8 +1,7 @@
-import numpy as np
-import pronouncing
+"""
+As the script just builds Markov chains in RAM, it does not require main() function. 
+"""
 import os
-import re
-
 #Create ngrams
 def ngram_generator(corpus,n ):
     for i in range(len(corpus) - n):
@@ -32,15 +31,11 @@ def create_word_dict(n, corpus):
                 word_dict[key].append(word_list[-1])
             else:
                 word_dict[key] = [word_list[-1]]
-    return word_dict
-def main():
-    k=4
-    corpus = load_cleaned_lyrics("Eminem")
     last_words = []
     for i in range(len(corpus)):
         if corpus[i] and corpus[i][-1] == '.':
             last_words.append(corpus[i])
-    word_dict = create_word_dict(k)
+    return word_dict, last_words
 
 
     
