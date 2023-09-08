@@ -1,5 +1,6 @@
 import os
 import re
+import argparse
 
 def remove_punctuation(text):
     # Remove punctuation using regex + some additional cleaning
@@ -31,10 +32,7 @@ def remove_sentences_in_braces(text):
     cleaned_text = '\n'.join(cleaned_lines)
     return cleaned_text
 
-def clean_lyrics(artist, num):
-    # Input and output folder paths
-    input_folder = "lyrics"
-    output_folder = "cleanedLyrics"
+def clean_lyrics(artist, num, input_folder="lupa", output_folder="pupa"):
     
     # Create the output folder if it doesn't exist
     os.makedirs(output_folder, exist_ok=True)
@@ -60,8 +58,15 @@ def clean_lyrics(artist, num):
         output_file.write(final_cleaned_text)
 # Example usage:
 def main():
-    artist_name = "Eminem"  # Replace with the desired artist name
-    clean_lyrics(artist_name, 100)
+    parser = argparse.ArgumentParser(description="Clean and format lyrics.")
+    parser.add_argument("artist", help="Name of the artist")
+    parser.add_argument("num", type=int, help="Lyrics number")
+    parser.add_argument("--input-folder", default="lyrics", help="Input folder path")
+    parser.add_argument("--output-folder", default="cleanedLyrics", help="Output folder path")
+
+    args = parser.parse_args()
+
+    clean_lyrics(args.artist, args.num, args.input_folder, args.output_folder)
 
 if __name__ == "__main__":
     main()
